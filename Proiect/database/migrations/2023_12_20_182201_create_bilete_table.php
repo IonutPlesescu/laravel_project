@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('tip', 50);
             $table->decimal('pret', 10, 2);
             $table->integer('disponibilitate');
-            $table->unsignedBigInteger('id_eveniment');
+            $table->unsignedBigInteger('id_eveniment')->nullable();
             $table->foreign('id_eveniment')->references('id')->on('evenimente');
             $table->unsignedBigInteger('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users');

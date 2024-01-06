@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Eveniment;
+use App\Models\Parteneri;
+use App\Models\Sponsor;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
@@ -18,15 +20,19 @@ class EvenimentController extends Controller
         return view('eveniment.index', ['events' => $events]);
     }
     public function create()
-    {
-        return view('eveniment.create');
-    }
+{
+    $parteneri = Parteneri::select('nume')->get(); 
+    $sponsori = Sponsor::select('nume')->get();
+    
+    return view('eveniment.create', ['parteneri' => $parteneri, 'sponsori'=> $sponsori]);
+}
+
 
     public function store(Request $request)
     {
         // Validează datele și salvează evenimentul în baza de date
+       
         $event = Eveniment::create($request->all());
-
         return redirect()->route('eveniment.index')->with('success', 'Eveniment creat cu succes!');
     }
 

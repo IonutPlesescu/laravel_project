@@ -40,7 +40,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+    
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
+    
+   
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -64,11 +72,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+    
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\CustomAdmin::class,
+        ],
     ],
 
     /*
@@ -97,6 +105,13 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'admin' => [
+        'provider' => 'admins',
+        'table' => 'password_resets',
+        'expire' => 60,
+        'throttle' => 60,
+        'algorithm' => 'bcrypt', // Make sure this is set to 'bcrypt'
+    ],
     ],
 
     /*

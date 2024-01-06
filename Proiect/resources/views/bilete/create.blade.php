@@ -16,14 +16,7 @@
             <label for="disponibilitate">Disponibilitate:</label>
             <input type="number" name="disponibilitate" class="form-control" required>
         </div>
-        <div class="form-group">
-            <label for="id_eveniment">ID Eveniment:</label>
-            <input type="number" name="id_eveniment" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="id_user">ID User:</label>
-            <input type="number" name="id_user" class="form-control">
-        </div>
+        
         <!-- You can add more fields as needed -->
 
         <button type="submit" class="btn btn-success">Adauga Bilet</button>

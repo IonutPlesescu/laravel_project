@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nume');
             $table->text('descriere')->nullable();
             $table->string('adresa', 50)->nullable();
+            $table->string('parteneri');
+            $table->string('sponsori');
             $table->integer('pret')->nullable();
             $table->dateTime('data');
             $table->string('telefon', 20)->nullable();

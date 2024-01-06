@@ -11,7 +11,7 @@ class Eveniment extends Model
     protected $table = 'evenimente';
    
     protected $fillable = [
-        'nume', 'descriere', 'data', 'locatie', 'pret', 'adresa', 'telefon', 'email',
+        'nume', 'descriere', 'data', 'parteneri','sponsori','locatie', 'pret', 'adresa', 'telefon', 'email',
     ];
 
  

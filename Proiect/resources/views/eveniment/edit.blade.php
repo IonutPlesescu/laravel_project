@@ -36,8 +36,8 @@
                 <label for="data">Data:</label>
                 <input type="date" name="data" value="{{ $eveniment->data }}" class="form-control">
             </div>
-
-            {{-- Adaugă și celelalte câmpuri --}}
+            
+           
 
             <button type="submit" class="btn btn-primary">Actualizează Eveniment</button>
         </form>

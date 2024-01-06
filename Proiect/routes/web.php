@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BileteController;
 use App\Http\Controllers\CosController;
+use App\Http\Controllers\CustomAdminController;
 use App\Http\Controllers\EvenimentController;
 use App\Http\Controllers\ParteneriController;
 use App\Http\Controllers\ProfileController;
@@ -48,10 +50,24 @@ Route::get('/parteneri/{parteneri}/edit', [ParteneriController::class, 'edit'])-
 Route::get('/bilete/{bilet}/edit', [BileteController::class, 'edit'])->name('bilete.edit');
 Route::put('/bilete/{bilet}', [BileteController::class, 'update'])->name('bilete.update');
 Route::delete('/bilete/{bilet}', [BileteController::class, 'destroy'])->name('bilete.destroy');
+Route::resource('admins', CustomAdminController::class);
 Route::resource('sponsors', SponsorController::class);
 Route::resource('bilete', BileteController::class);
+Route::get('/custom_admins/create', [CustomAdminController::class, 'create'])->name('custom_admins.create');
+Route::post('/custom_admins', [CustomAdminController::class, 'store'])->name('custom_admins.store');
+Route::get('/custom_admins', [CustomAdminController::class, 'index'])->name('custom_admins.index');
+Route::get('/custom_admins/{custom_admin}', [CustomAdminController::class, 'show'])->name('custom_admins.show');
+Route::get('/custom_admins/{custom_admin}/edit', [CustomAdminController::class, 'edit'])->name('custom_admins.edit');
+Route::put('/custom_admins/{custom_admin}', [CustomAdminController::class, 'update'])->name('custom_admins.update');
+Route::delete('/custom_admins/{custom_admin}', [CustomAdminController::class, 'destroy'])->name('custom_admins.destroy');
 
-
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::get('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+    Route::post('/login', [AdminAuthController::class, 'login']);
+    // Alte rute pentru autentificare/deautentificare
+});
+Route::get('/custom-admin', [CustomAdminController::class, 'index'])->name('custom_admin.index');
 Route::post('/cos/process-payment', function (Request $request) {
     // Set your Stripe API key.
     Log::info($request->all());
@@ -78,7 +94,7 @@ Route::get('/cos/payment-success', [CosController::class, 'paymentSuccess'])->na
 
 
 
-Route::middleware('auth')->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -108,7 +124,7 @@ Route::middleware('auth')->group(function () {
 
         
     });
-});
+
 
 
 

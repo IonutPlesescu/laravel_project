@@ -19,6 +19,8 @@
                     <th>Nume</th>
                     <th>Data</th>
                     <th>Locație</th>
+                    <th>Parteneri</th>
+                    <th>Sponsori</th>
                     
                     @auth
                         @if(auth()->user()->getRole() === 'admin')
@@ -35,6 +37,8 @@
                         <td>{{ \Carbon\Carbon::parse($event->data)->format('Y-m-d') }}</td>
 
                         <td>{{ $event->adresa }}</td>
+                        <td>{{ $event->parteneri }}</td>
+                        <td>{{ $event->sponsori }}</td>
                        
                       
                         @auth

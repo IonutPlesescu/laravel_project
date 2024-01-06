@@ -16,46 +16,60 @@
                         Evenimente
                     </x-nav-link>
                 </div>
-                @auth
-                @if(auth()->user()->getRole() === 'admin')
+                 
+                @if(Cookie::get('logged_user') )
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('custom_admin.index')" :active="request()->routeIs('custom_admin.index')">
+                        Useri
+                    </x-nav-link>
+                </div>
+                @endif
+                @if(Cookie::get('logged_user') )
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin_users.index')" :active="request()->routeIs('admin_users.index')">
                         Utilizatori
                     </x-nav-link>
                 </div>
                 @endif
-                @endauth
-                @auth
-                @if(auth()->user()->getRole() === 'admin')
+               
+               
+                @if(Cookie::get('logged_user') )
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('bilete.index')" :active="request()->routeIs('bilete.index')">
                         Bilete
                     </x-nav-link>
                 </div>
                 @endif
-                @endauth
-                @auth
-                @if(auth()->user()->getRole() === 'admin')
+               
+                
+                @if(Cookie::get('logged_user') )
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('sponsors.index')" :active="request()->routeIs('sponsors.index')">
                         Sponsori
                     </x-nav-link>
                 </div>
                 @endif
-                @endauth
-                @auth
-                @if(auth()->user()->getRole() === 'admin')
+                
+              
+                @if(Cookie::get('logged_user') )
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                 <x-nav-link :href="route('parteneri.index')" :active="request()->routeIs('parteneri.index')">
                 Parteneri
                 </x-nav-link>
                 </div>
                 @endif
-                @endauth
+                
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                 <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
                 Inregistrare
                 </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <a style="text-align:center; margin:auto; color:white;" href="/admin/login">Logare Admin</a>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <a style="text-align:center; margin:auto; color:white;" href="/admin/logout">Delogare Admin</a>
                 </div>
 
             </div>
@@ -65,11 +79,17 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                        @if (Auth::check())
-    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->name }}</div>
-@else
-    <div class="font-medium text-sm text-gray-500">Niciun utilizator autentificat</div>
-@endif
+                     
+                       
+
+                        <div class="font-medium text-sm text-gray-500">
+    @if (Cookie::has('logged_user'))
+        <div>Utilizatorul {{ Cookie::get('logged_user') }} este logat</div>
+    @else
+        <div>Niciun utilizator autentificat</div>
+    @endif
+</div>
+
 
 
                             <div class="ms-1">
@@ -81,9 +101,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
+                       
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -92,7 +110,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }} // Log In 
+                                {{ __('Log Out') }} // Log In Utilizator
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -125,15 +143,10 @@
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">@if (Auth::check())
     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->name }}</div>
 @else
-    <div class="font-medium text-sm text-gray-500">Niciun utilizator autentificat</div>
+    <div class="font-medium text-sm text-gray-500">Niciun utilizsator autentificat</div>
 @endif
 </div>
-                <div class="font-medium text-sm text-gray-500">@if (Auth::check())
-    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-@else
-    <div class="font-medium text-sm text-gray-500">Niciun utilizator autentificat</div>
-@endif
-</div>
+                
             </div>
 
             <div class="mt-3 space-y-1">
