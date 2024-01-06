@@ -25,6 +25,33 @@
                 </div>
                 @endif
                 @endauth
+                @auth
+                @if(auth()->user()->getRole() === 'admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('bilete.index')" :active="request()->routeIs('bilete.index')">
+                        Bilete
+                    </x-nav-link>
+                </div>
+                @endif
+                @endauth
+                @auth
+                @if(auth()->user()->getRole() === 'admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('sponsors.index')" :active="request()->routeIs('sponsors.index')">
+                        Sponsori
+                    </x-nav-link>
+                </div>
+                @endif
+                @endauth
+                @auth
+                @if(auth()->user()->getRole() === 'admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('parteneri.index')" :active="request()->routeIs('parteneri.index')">
+                Parteneri
+                </x-nav-link>
+                </div>
+                @endif
+                @endauth
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                 <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
                 Inregistrare

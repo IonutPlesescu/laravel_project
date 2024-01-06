@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bilet;
 use App\Models\Eveniment;
 
 class CosController extends Controller
@@ -20,16 +21,20 @@ class CosController extends Controller
     }
 
     public function index()
-    {
-        // Implement your logic to display the shopping cart page
-        // You can retrieve the events from the cart and display details
+{
+    // Implement your logic to display the shopping cart page
+    // You can retrieve the events from the cart and display details
 
-        // For example, using session:
-        $cart = session()->get('cart', []);
-        $eventsInCart = Eveniment::whereIn('id', $cart)->get();
+    // For example, using session:
+    $cart = session()->get('cart', []);
+    $eventsInCart = Eveniment::whereIn('id', $cart)->get();
+    $tipuriBilete = Bilet::select('tip', 'pret')->get();
+  
 
-        return view('cos.index', compact('eventsInCart'));
-    }
+
+    return view('cos.index', compact('eventsInCart', 'tipuriBilete'));
+}
+
     public function sterge(Eveniment $event)
 {
     // Implement your logic to remove the event from the cart

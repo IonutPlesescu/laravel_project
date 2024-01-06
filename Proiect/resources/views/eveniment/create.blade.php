@@ -26,10 +26,7 @@
                 <label for="data" class="form-label">Data:</label>
                 <input type="date" name="data" id="data" class="form-control" required>
             </div>
-            <div class="mb-3">
-                <label for="pret" class="form-label">Pret:</label>
-                <input type="number" name="pret" id="pret" class="form-control" required>
-            </div>
+            
 
             <div class="mb-3">
                 <label for="telefon" class="form-label">Telefon:</label>

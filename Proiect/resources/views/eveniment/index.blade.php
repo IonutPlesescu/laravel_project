@@ -19,13 +19,13 @@
                     <th>Nume</th>
                     <th>Data</th>
                     <th>Locație</th>
-                    <th>Pret</th>
+                    
                     @auth
                         @if(auth()->user()->getRole() === 'admin')
                             <th>Acțiuni</th>
                         @endif
                     @endauth
-                    <th>Cumpără Bilete</th>
+                    <!-- <th>Cumpără Bilete</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +35,7 @@
                         <td>{{ \Carbon\Carbon::parse($event->data)->format('Y-m-d') }}</td>
 
                         <td>{{ $event->adresa }}</td>
-                        <td>{{$event->pret}} lei</td>
+                       
                       
                         @auth
                             @if(auth()->user()->getRole() === 'admin')
@@ -56,9 +56,9 @@
                             @endif
                         @endauth
                        
-                        <td>
+                        <!-- <td>
                             <a href="{{ route('evenimente.cumpara-bilete', $event->id) }}" class="btn btn-success">Cumpără Bilete</a>
-                        </td>
+                        </td> -->
                     </tr>
                 @endforeach
             </tbody>

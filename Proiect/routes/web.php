@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\BileteController;
 use App\Http\Controllers\CosController;
 use App\Http\Controllers\EvenimentController;
+use App\Http\Controllers\ParteneriController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SponsorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
@@ -38,9 +41,17 @@ Route::match(['put', 'patch'], '/eveniment/{id}/update', [EvenimentController::c
 Route::delete('/cos/sterge/{event}', [CosController::class, 'sterge'])->name('cos.sterge');
 Route::get('/register', [RegisteredUserController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisteredUserController::class, 'register']);
-
+Route::resource('parteneri', ParteneriController::class);
 Route::post('/cos/adauga/{event}', [CosController::class, 'adauga'])->name('cos.adauga');
 Route::get('/cos', [CosController::class, 'index'])->name('cos.index');
+Route::get('/parteneri/{parteneri}/edit', [ParteneriController::class, 'edit'])->name('parteneri.edit');
+Route::get('/bilete/{bilet}/edit', [BileteController::class, 'edit'])->name('bilete.edit');
+Route::put('/bilete/{bilet}', [BileteController::class, 'update'])->name('bilete.update');
+Route::delete('/bilete/{bilet}', [BileteController::class, 'destroy'])->name('bilete.destroy');
+Route::resource('sponsors', SponsorController::class);
+Route::resource('bilete', BileteController::class);
+
+
 Route::post('/cos/process-payment', function (Request $request) {
     // Set your Stripe API key.
     Log::info($request->all());
