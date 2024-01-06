@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+p {
+    color:  white;
+}
+body{
+    background-color: white !important;
+}
+label {
+    color: white !important;
+}
+.card-title{
+    font-size: 20px;
+    color: white;
+    margin: 20px;
+}
