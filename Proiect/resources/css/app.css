@@ -16,3 +16,6 @@ label {
     color: white;
     margin: 20px;
 }
+strong {
+    color: white !important;
+}

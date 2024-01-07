@@ -17,13 +17,13 @@
                     </x-nav-link>
                 </div>
                  
-                @if(Cookie::get('logged_user') )
+                <!-- @if(Cookie::get('logged_user') )
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('custom_admin.index')" :active="request()->routeIs('custom_admin.index')">
                         Useri
                     </x-nav-link>
                 </div>
-                @endif
+                @endif -->
                 @if(Cookie::get('logged_user') )
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin_users.index')" :active="request()->routeIs('admin_users.index')">
@@ -83,11 +83,12 @@
                        
 
                         <div class="font-medium text-sm text-gray-500">
-    @if (Cookie::has('logged_user'))
-        <div>Utilizatorul {{ Cookie::get('logged_user') }} este logat</div>
-    @else
-        <div>Niciun utilizator autentificat</div>
-    @endif
+                        @if (Auth::check() || Cookie::has('logged_user'))
+    <div>Utilizatorul este autentificat este setat</div>
+@else
+    <div>Niciun utilizator autentificat nu este setat</div>
+@endif
+
 </div>
 
 
